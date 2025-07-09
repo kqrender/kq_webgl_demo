@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>KnowledgeQ WebGl Demo</title>
+    <meta
+      name="application-name"
+      lang="pt-br"
+      content="Knowledgeq webgl demo"
+    />
+    <meta name="theme-color" content="#EBB61F" />
+    <meta name="twitter:card" content="player" />
+    <meta name="twitter:site" content="modelviewer" />
+    <meta name="twitter:player:width" content="480" />
+    <meta name="twitter:player:height" content="480" />
+    <meta
+      name="twitter:player"
+      content=""
+
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="demo-styles3.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@^0.169.0/build/three.module.min.js"
+        }
+      }
+    </script>
+  </head>
+  <body id="corpo">
+    <div>
+      <model-viewer
+        id="model-viewer"
+        src="https://cdn.glitch.global/6357abbf-66bb-42db-9ed1-3e3b86db1c70/drill_bit_demo.glb?v=1751979756380"
+        alt=""
+        shadow-intensity="3.8"
+        camera-controls
+        exposure="2.5"
+        loading="lazy"
+        auto-rotate
+        interpolation-decay="100"
+        shadow-softness="1.2"
+        min-camera-orbit="auto 0deg auto"
+        max-camera-orbit="auto 180deg auto"
+        environment-image="https://cdn.glitch.com/26f00b29-51b7-4811-9ca7-3f1c898bb4b3%2Faircraft_workshop_01_1k.hdr"
+        oncontextmenu="return false;"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        tone-mapping="neutral"
+        camera-orbit="0deg 90deg 2.5m"
+        field-of-view="35deg"
+        camera-target="0m 0m 0m"
+        enable-zoom
+        disable-pan
+      >
+        <button
+          class="Hotspot"
+          slot="hotspot-1"
+          data-position="93.29377799891323m -56.68653078402422m 491.1181125938986m"
+          data-normal="0.895173573549084m 0.36646583040858327m 0.25370665809613685m"
+          data-visibility-attribute="visible"
+          data-orbit="50.94862deg 24.56856deg 0.06545582m"
+          data-target="-0.08786772449997013m 0.8735665888411929m 400.242048772877014m"
+          data-fov="6.91deg"
+        >
+          <div class="HotspotAnnotation" onclick="annotationClicked(this)">
+            Fire system
+          </div></button
+        ><button
+          class="Hotspot"
+          slot="hotspot-2"
+          data-position="55.38660732979233m -39.25058010159808m -249.60729819718438m"
+          data-normal="1m 2m 5.5511151231257815e-17m"
+          data-orbit="120.94862deg 0.56856deg -110.86545582m"
+          data-target="0.03323465608204483m -40.7456965277218954m -240.9633126732252862m"
+          data-fov="28.91deg"
+          data-visibility-attribute="visible"
+        >
+          <div class="HotspotAnnotation" onclick="annotationClicked(this)">
+            Smooth ride
+          </div></button
+        ><button
+          class="Hotspot"
+          slot="hotspot-3"
+          data-position="-84.136714693433m -22.225550443789437m -28.68155997039069m"
+          data-normal="5.551115123125783e-17m 0.5734620649472875m -0.8192321161101982m"
+          data-orbit="-120.94862deg 0.56856deg 0.06545582m"
+          data-target="0m 2m 4m"
+          data-fov="55.91deg"
+          data-visibility-attribute="visible"
+        >
+          <div class="HotspotAnnotation" onclick="annotationClicked(this)">
+            Powerful engine
+          </div>
+        </button>
+        
+        <effect-composer>
+          <ssao-effect
+            min-distance="0.5"
+            max-distance="2"
+            opacity="1"
+            strength="300"
+          ></ssao-effect>
+          <color-grade-effect
+            contrast="0"
+            saturation="0.1"
+            opacity="1"
+          ></color-grade-effect>
+          <bloom-effect
+            strength="1"
+            opacity="1"
+            threshold="0.01"
+          ></bloom-effect>
+        </effect-composer>
+        
+      </model-viewer>
+
+      <div id="logo">
+        <img
+          src="https://cdn.glitch.global/6357abbf-66bb-42db-9ed1-3e3b86db1c70/KQ_New_Logo.png?v=1751975039396"
+          width="180px"
+        />
+        <p><span></span></p>
+      </div>
+
+      <div id="instrucoes">
+        
+        <a href="https://www.andersonmancini.com" target="_blank"
+          ></a
+        >
+        <a
+          href="https://sketchfab.com/3d-models/car-scene-b7b32eaca80d460c9338197e2c9d1408"
+          target="_blank"
+          ></a
+        ><br />
+        
+        <a href="" target="_blank"
+          ></a
+        >
+      </div>
+
+      <h1 id="nome_produto">KnowledgeQ - 3D Model Web View Demo</h1>
+      <div id="footer">
+        <h2 id="detalhes">
+      
+        </h2>
+        <p>
+          Tap to rotate the Item. Use scroll
+          or pinch to zoom in and double-click to reset.
+        </p>
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+    ></script>
+    
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/@google/model-viewer-effects/dist/model-viewer-effects.min.js"
+    ></script>
+    
+    <script type="module" src="cameraControlsModel.js"></script>
+
+    <script>
+      const mv = document.querySelector("#model-viewer");
+
+      const annotationClicked = (a) => {
+        let ds = a.parentNode.dataset;
+
+        mv.cameraTarget = ds.target;
+
+        mv.cameraOrbit = ds.orbit;
+
+        if (ds.fov !== undefined) mv.fieldOfView = ds.fov;
+      };
+    </script>
+    
+  </body>
+</html>
